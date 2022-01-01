@@ -1,0 +1,45 @@
+﻿@using QuestionBankNewCtsp.Models
+@model LoginViewModel
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Log in";
+}
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    //------------------------------start-------------------------------------------
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <!--Correct username: invitado / pass: hgm2015-->
+    <div class="container">
+        <section id="content">
+            <div class="container">
+                <form action="">
+                    <h1>Sign In</h1>
+                    <div>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "abcd", placeholder = Html.DisplayNameFor(x => x.Email) } })
+                        <br />
+                        @*@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
+
+                    </div>
+                    <div>
+                        @Html.PasswordFor(m => m.Password, new { @class = "abcd", @placeholder = " Password" })
+                        <br />
+                        @*@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })*@
+
+                    </div>
+                    <input type="submit" value="Log in" class="mybutton" style="float:none;margin: 20px 0 35px 0px;" />
+                </form>
+            </div>
+
+        </section><!-- content -->
+    </div><!-- container -->
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,122 @@
+﻿@model DAL.tblUserProfile
+
+@{
+    ViewBag.Title = "Create";
+   
+}
+
+@*<div style="text-align:center">
+        <h2>Create</h2>
+    </div>*@
+
+
+@using (Html.BeginForm("Create","UserProfiles", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    //-----------addding new-----------------
+    <div role="tabpanel" class="tab-pane" id="profile">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">My Profile</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row user_profile">
+                    <div class="form-group">
+                
+                        <div class="col-md-12">
+
+                            <div class="col-md-5">
+                                @Html.Label("Name:")
+
+                                @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="col-md-5">
+                                @Html.Label("Cnic:")
+
+                                @*@Html.LabelFor(model => model.cnic, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+                                @Html.EditorFor(model => model.cnic, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.cnic, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="col-md-5">
+                                @*@Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+                                @Html.Label("Phone-No:")
+                                @*<input id="phone" type="number" maxlength="11" placeholder="xxxx-xxxxxxx" />*@
+                                @Html.EditorFor(model => model.phone,new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                @*@Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+
+                            </div>
+                            @*@Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-5">
+                                @Html.Label("Email:")
+
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="col-md-5">
+                                @*@Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                @Html.Label("Address:")
+                                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-md-5" style="display:none;">
+                                @*@Html.LabelFor(model => model.userType, "userType", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                @Html.Label("Select Role:")
+                                @Html.DropDownList("userType", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.userType, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @*@Html.LabelFor(model => model.profilePic, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-5">
+
+                             @Html.Label("Upload Image:")
+                                <div>
+                                    <input type="file" title="browse" id="profilePic" name="file" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div style="margin-left:50.66666%">
+                                <input type="submit" value="Create Profile" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <div class="btn btn-sm btn-warning">
+                    <i class="glyphicon glyphicon-floppy-disk">
+                        @Html.ActionLink("Show", "Index")
+                    </i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

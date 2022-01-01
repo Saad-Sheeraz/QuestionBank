@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "creator_ViewApprovedQuestion";
+}
+
+<style>
+    body {
+        counter-reset: Serial; /* Set the Serial counter to 0 */
+    }
+
+    table {
+        border-collapse: separate;
+    }
+
+    .auto-index td:first-child:before {
+        counter-increment: Serial; /* Increment the Serial counter */
+        content: "" counter(Serial); /* Display the counter */
+    }
+</style>
+
+@using (Ajax.BeginForm("creator_ViewApprovedQuestion", "Questions",
+    new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "progress"
+    }))
+{
+    <div class="row grid-first" id="collapse-grid1">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="g_panel">
+                <div style="margin-top:7px">
+
+                </div>
+            </div>
+
+            <div class="g_panel">
+
+                <div class="g_title">
+                    <div class="h-transaction pull-left" style="align-items:center">
+                        <div class="container">
+                            <div style="align-items:center">
+                                <h2 style="align-items:center">Approved Questions</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse-btn pull-right">
+                        <a class="collapse-link" data-toggle="collapse" href="#collapse-1" data-parent="#collapse-grid1"><i class="fa fa-chevron-down"></i></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="g_content collapse in" id="collapse-1">
+                    <div class="table-responsive">
+                        <div class="auto-index">
+                            <table class="table table-striped jambo_table">
+                                <tr class="headings" style="background-color:#e2e0d4 !important">
+                                    <th>Sr#</th>
+                                    <th>
+                                        @Html.Label("User:")
+                                    </th>
+                                    <th>
+                                        @Html.Label("Question:")
+                                    </th>
+                                    <th>
+                                        @Html.Label("Right-Answer:")
+                                    </th>
+
+                                    <th>
+                                        @Html.Label("Status:")
+                                    </th>
+                                    <th>
+                                        @Html.Label("View Options:")
+                                    </th>
+                                    <th>
+                                        @Html.Label("Details")
+                                    </th>
+                                </tr>
+
+                                @foreach (var item in ViewBag.c_approvedQ)
+                                {
+                                    if (item.answerID == item.rightID && item.statusInfo != "deleted")
+                                    {
+                                        <tr style="background-color:papayawhip !important;">
+                                            <td></td>
+                                            @{
+                                                foreach (var name in ViewBag.userProfiledata)
+                                                {
+                                                    if (name.userid == item.UserID)
+                                                    {
+                                                        <td>
+                                                            @Html.Raw(name.userName)
+                                                        </td>
+                                                    }
+
+                                                }
+
+
+                                            }
+
+                                            <td>
+                                                @Html.Raw(item.questionText)
+                                            </td>
+                                            <td>
+                                                @Html.Raw(item.answerText1)
+                                            </td>
+
+                                            <td>
+                                                @Html.Raw(item.statusInfo)
+                                            </td>
+                                            <td>
+
+
+                                                <input type="button" class="btn btn-warning" value="View" onclick="location.href='@Url.Action("admin_Gridanswer", "Questions",new { id=item.questionID,type=ViewBag.type,check=ViewBag.check})'" />
+
+                                            </td>
+                                            <td>
+                                                <input type="button" class="btn btn-success" value="Details" onclick="location.href='@Url.Action("admin_ViewDetails", "Questions",new { id = item.rightID, id2 = item.questionID ,type=ViewBag.type, check=ViewBag.check})'" />
+                                            </td>
+                                        </tr>
+                                    }
+
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

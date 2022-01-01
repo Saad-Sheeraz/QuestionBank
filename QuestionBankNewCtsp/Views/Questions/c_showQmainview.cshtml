@@ -1,0 +1,166 @@
+﻿@model DAL.tblQuestion
+
+@{
+    ViewBag.Title = "c_showQmainview";
+}
+
+<link href="~/customFiles/StyleSheet1.css" rel="stylesheet" />
+
+
+@using (Ajax.BeginForm("c_showQmainview", "Questions",
+                     new AjaxOptions
+                     {
+                         OnSuccess = "OnSuccess",
+                         OnFailure = "OnFailure",
+                         LoadingElementId = "progress"
+                     }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row" id="pnl1" style="margin-right:0px"> 
+        <div role="tabpanel" class="tab-pane" id="profile">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">View Question</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="name"><h3>Degree</h3></div>
+
+                                <div class="value">
+                                    <div class="input-group">
+                                        @Html.DropDownList("degreeId", null, "-- select degree name --", htmlAttributes: new { @class = "dropbtn" })
+                                        @*@Html.ValidationMessageFor(model => model.degreeId, "", new { @class = "text-danger" })*@
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-row">
+                                <div class="name"><h3>Subject</h3> </div>
+                                <div class="value">
+                                    <div class="input-group">
+
+                                        @Html.DropDownList("subjectId", null, "-- select subject name --", htmlAttributes: new { @class = "dropbtn" })
+                                        @Html.ValidationMessageFor(model => model.subjectId, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-row">
+                                <div class="name"><h3>Content</h3></div>
+                                <div class="value">
+                                    <div class="input-group">
+
+                                        @Html.DropDownList("categoryId", null, "-- select content --", htmlAttributes: new { @class = "dropbtn" })
+                                        @Html.ValidationMessageFor(model => model.categoryId, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div id="b1">
+                        <input type="button" id="btnNext" name="this" class="btn btn-success" value="Show" onclick="validatedrpdown()" />
+                    </div>
+                    <div id="b2" style="display:none">
+                        <input type="submit" value="Show" name="this" class="btn btn-success"/>
+                    </div>
+                   
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+<script>
+    function validatedrpdown() {
+        if ($('#degreeId option:selected').val() == "") {
+            alert("Please Select Degree");
+
+        }
+        else if ($('#subjectId option:selected').val() == "") {
+            alert("Please Select Subject");
+
+        }
+        else if ($('#categoryId option:selected').val() == "") {
+            alert("Please Select Category");
+            $('#b1').hide();
+            $('#b2').show();
+        }
+        else {
+            $('#b1').hide();
+            $('#b2').show();
+        }
+    }
+    function OnSuccess(response) {
+        debugger;
+        alert("Data Displayed");
+        $('#thisDiv').html(response);
+    }
+    function OnFailure(response) {
+        alert("Error occured.");
+    }
+
+     $('#degreeId').on('change', function () {
+        debugger;
+        var division = $('#degreeId option:selected').val();
+       // alert(gender);
+        var myvar1 = $('#degreeId option:selected').text();
+        $('#myVar').val($('#degreeId option:selected').text());
+             $.ajax({
+                type: 'Get',
+                 data: { division: division },
+                url: '@Url.Action("GetDegree", "Questions")',
+                success: function (result) {
+                debugger;
+                //$('#tblPostInformation_ctspCode').val(result);
+                var itemName = "";
+                var s = '<option value="">-- Select --</option>';
+                $.each(result, function (i, val) {
+                    itemName = val.subjectName;
+                    s += "<option value='" + val.subjectID + "'>" + itemName + "</option>";
+                });
+                    $('#subjectId').html(s);
+                }
+                });
+    });
+
+
+     $('#subjectId').on('change', function () {
+        debugger;
+         var division = $('#subjectId option:selected').val();
+         $('#myVar1').val($('#subjectId option:selected').text());
+       // alert(gender);
+             $.ajax({
+                type: 'Get',
+                 data: { division: division },
+                url: '@Url.Action("GetSubject", "Questions")',
+                success: function (result) {
+                    debugger;
+                //$('#tblPostInformation_ctspCode').val(result);
+                var itemName = "";
+                var s = '<option value="">-- Select --</option>';
+                $.each(result, function (i, val) {
+                    itemName = val.categoryName;
+                    s += "<option value='" + val.categoryID + "'>" + itemName + "</option>";
+                });
+                    $('#categoryId').html(s);
+                }
+                });
+                });
+
+</script>
+@*<script src="~/customFiles/JavaScript.js"></script>*@

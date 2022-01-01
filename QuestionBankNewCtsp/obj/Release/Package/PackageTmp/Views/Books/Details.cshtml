@@ -1,0 +1,50 @@
+﻿@model DAL.tblBook
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblBook</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tblDegree.degreeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblDegree.degreeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblSubject.subjectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblSubject.subjectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookAuthor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookAuthor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bookID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,109 @@
+﻿@model DAL.tblDegree
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @*<div class="form-horizontal">
+            <h4>tblDegree</h4>
+            <hr />
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.createdBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.createdBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.createdBy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.createdOn, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.createdOn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.createdOn, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.updatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.updatedBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.updatedBy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.updatedOn, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.updatedOn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.updatedOn, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.status)
+                        @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+
+                </div>
+            </div>
+        </div>*@
+
+
+    <div role="tabpanel" class="tab-pane" id="profile">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Insert Degree/Class</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row user_profile">
+
+                    <!-- Text input-->
+                    <div class="col-sm-3">
+                        <label for="fname">Degree/Class Name:</label>
+                    </div>
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+                        <span>
+                            @Html.EditorFor(model => model.degreeName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.degreeName, "", new { @class = "text-danger" })
+                        </span>
+
+                    </div>
+
+                    <div class="col-sm-12">
+                        <input type="submit" value="Create" class="btn btn-success" />
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="btn btn-sm btn-warning">                  
+                        @Html.ActionLink("Show", "Index")               
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+}
+
+<div>
+  
+</div>

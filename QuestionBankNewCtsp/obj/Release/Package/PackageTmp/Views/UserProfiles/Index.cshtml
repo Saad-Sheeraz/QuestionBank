@@ -1,0 +1,131 @@
+﻿@*@model  IEnumerator <DAL.viewForRole>*@
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    body {
+        counter-reset: Serial; /* Set the Serial counter to 0 */
+    }
+
+    table {
+        border-collapse: separate;
+    }
+
+    .auto-index td:first-child:before {
+        counter-increment: Serial; /* Increment the Serial counter */
+        content: "" counter(Serial); /* Display the counter */
+    }
+</style>
+<div class="row grid-first" id="collapse-grid1">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="g_panel">
+            <div style="margin-top:7px">
+                @*<a href='@Url.Action("Create", "Degrees")' class="btn btn-primary">Add New</a>*@
+            </div>
+        </div>
+
+        <div class="g_panel">
+
+            <div class="g_title">
+                <div class="h-transaction pull-left" style="align-items:center">
+                    <div class="container">
+                        <div style="align-items:center">
+                            <h2 style="align-items:center">Profile Details </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse-btn pull-right">
+                    <a class="collapse-link" data-toggle="collapse" href="#collapse-1" data-parent="#collapse-grid1"><i class="fa fa-chevron-down"></i></a>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="g_content collapse in" id="collapse-1">
+                <div class="table-responsive">
+                    <div class="auto-index">
+                        <table class="table table-striped jambo_table">
+                            <tr class="headings" style="background-color:#e2e0d4 !important">
+                                <th>Sr#</th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tblUserType.userType)*@
+                                    @Html.Label("Type:")
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.userName)*@
+                                    @Html.Label("Name:")
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.cnic)*@
+                                    @Html.Label("Cnic:")
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.phone)*@
+                                    @Html.Label("Phone no:")
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.email)*@
+                                    @Html.Label("Email:")
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.address)*@
+                                    @Html.Label("Address:")
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.profilePic)*@
+                                    @Html.Label("Profile Pic:")
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in ViewBag.abc)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        @item.userType
+
+                                        
+                                    </td>
+                                    <td>
+                                        @item.userName
+                                        @*@Html.DisplayFor(modelItem => item.userName)*@
+                                    </td>
+                                    <td>
+                                        @item.cnic
+                                        @*@Html.DisplayFor(modelItem => item.cnic)*@
+                                    </td>
+                                    <td>
+                                        @item.phone
+                                        @*@Html.DisplayFor(modelItem => item.phone)*@
+                                    </td>
+                                    <td>
+                                        @item.email
+                                        @*@Html.DisplayFor(modelItem => item.email)*@
+                                    </td>
+                                    <td>
+                                        @item.address
+                                        @*@Html.DisplayFor(modelItem => item.address)*@
+                                    </td>
+                                    <td>
+                                        @*@Html.DisplayFor(modelItem => item.profilePic)*@
+                                        <img src="~/img/@item.profilePic" width="100" height="100" />
+
+
+                                    </td>
+                                    <td>
+                                       
+                                        @Html.ActionLink("Edit", "Edit", new { Id = item.id}, new { @class = "btn btn-warning" })
+                                        @*@Html.ActionLink("Details", "Details", new { id = item.Id })*@
+                                        @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

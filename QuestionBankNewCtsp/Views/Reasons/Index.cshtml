@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DAL.tblReason>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tblAnwer.answerText1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.resaonName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updatedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblAnwer.answerText1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.resaonName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createdBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createdOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updatedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.reasonID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.reasonID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.reasonID })
+        </td>
+    </tr>
+}
+
+</table>

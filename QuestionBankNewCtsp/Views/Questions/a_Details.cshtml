@@ -1,0 +1,231 @@
+﻿@model IEnumerable<DAL.viewForVerfier>
+
+@{
+    ViewBag.Title = "a_Details";
+}
+
+@foreach (var item in ViewBag.detail)
+{
+    <div role="tabpanel" class="tab-pane" id="profile">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Details</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row user_profile">
+
+                    @foreach (var bookitem in ViewBag.bookdetail)
+                    {
+                        <!-- Text input-->
+                        <div class="col-sm-3">
+                            @Html.Label("Book Name:")
+                        </div>
+                        <div class="col-sm-9" style="margin-bottom: 10px;">
+                            @{
+                                if (bookitem.bookName != null)
+                                {
+                                    @Html.Raw(bookitem.bookName)
+                                }
+                                else
+                                {
+                                    <p>no value yet</p>
+                                }
+                            }
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            @Html.Label("Book Author:")
+                        </div>
+                        <div class="col-sm-9" style="margin-bottom: 10px;">
+
+
+                            @{
+                                if (bookitem.bookAuthor != null)
+                                {
+                                    @Html.Raw(bookitem.bookAuthor)
+                                }
+                                else
+                                {
+                                    <p>no value yet</p>
+                                }
+                            }
+
+                        </div>
+                    }
+
+                    @foreach (var citems in ViewBag.complexid)
+                    {
+                        <div class="col-sm-3">
+                            @Html.Label("Complexity Level:")
+                        </div>
+                        <div class="col-sm-9" style="margin-bottom: 10px;">
+                            @{
+                                if (citems.complexityLevel != null)
+                                {
+                                    @Html.Raw(citems.complexityLevel)
+                                }
+                                else
+                                {
+                                    <p>no value yet</p>
+                                }
+                            }
+
+                        </div>
+                    }
+
+                    <!-- Text input-->
+                    <div class="col-sm-3">
+                        @Html.Label("Page No:")
+                    </div>
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+                        @{
+                            if (item.bookPageNum != null)
+                            {
+                                @Html.Raw(item.bookPageNum)
+                            }
+                            else
+                            {
+                                <p>no value yet</p>
+                            }
+                        }
+
+                    </div>
+
+
+                    <div class="col-sm-3">
+                        @Html.Label("Created By:")
+                    </div>
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+                        @{
+                            if (item.createdBy != null)
+                            {
+                                @Html.Raw(item.createdBy)
+                            }
+                            else
+                            {
+                                <p>no value yet</p>
+                            }
+                        }
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="col-sm-3">
+                        @Html.Label("Created On:")
+                    </div>
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                        @{
+                            if (item.createdOn != null)
+                            {
+                                @Html.Raw(item.createdOn)
+                            }
+                            else
+                            {
+                                <p>no value yet</p>
+                            }
+                        }
+                    </div>
+
+
+
+                    <div class="col-sm-3">
+                        @Html.Label("Verified By:")
+                    </div>
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+                        @{
+                            if (item.verifiedBy != null)
+                            {
+                                @Html.Raw(item.verifiedBy)
+                            }
+                            else
+                            {
+                                <p>no value yet</p>
+                            }
+                        }
+                    </div>
+
+                    <div class="col-sm-3">
+                        @Html.Label("Verified On:")
+                    </div>
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+
+
+
+                        @{
+                            if (item.verifiedDate != null)
+                            {
+                                @Html.Raw(item.verifiedDate)
+                            }
+                            else
+                            {
+                                <p>no value yet</p>
+                            }
+                        }
+                    </div>
+                    <!-- Prepended text-->
+                    <div class="col-sm-3">
+                        @Html.Label("Reason-Creator:")
+                    </div>
+
+                    <div class="col-sm-9 " style="margin-bottom: 10px;">
+                        @{
+                            if (item.reasonText_C != null)
+                            {
+                                @Html.Raw(item.reasonText_C)
+                            }
+                            else
+                            {
+                                <p>no value yet</p>
+                            }
+                        }
+
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="col-sm-3">
+                        @Html.Label("Reason-Verifier:")
+                    </div>
+                    <div class="col-sm-9 " style="margin-bottom: 10px;">
+                        @{
+                            if (item.reasonText_V != null)
+                            {
+                                @Html.Raw(item.reasonText_V)
+                            }
+                            else
+                            {
+
+                                <p>no value yet</p>
+                            }
+                        }
+
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.Label("Reason-Approver:")
+                    </div>
+                    <div class="col-sm-9 " style="margin-bottom: 10px;">
+                        @{
+                            if (item.reasonText_A != null)
+                            {
+                                @Html.Raw(item.reasonText_A)
+                            }
+                            else
+                            {
+                                <p> no value yet</p>
+                            }
+                        }
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="btn btn-sm btn-warning">
+                    @Html.ActionLink("Back", "a_table", new { catid = ViewBag.catid, subid = ViewBag.subid, degid = ViewBag.degid })
+                </div>
+            </div>
+        </div>
+    </div>
+}

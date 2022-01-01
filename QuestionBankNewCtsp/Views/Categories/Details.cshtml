@@ -1,0 +1,128 @@
+﻿@model DAL.tblCategory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div role="tabpanel" class="tab-pane" id="profile">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Details</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row user_profile">
+
+                <!-- Text input-->
+                <div class="col-sm-3">
+                    @Html.Label("Degree Name:")
+                </div>
+                <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                    @Html.DisplayFor(model => model.tblDegree.degreeName)
+
+
+                </div>
+                <!-- Text input-->
+                <div class="col-sm-3">
+                    @Html.Label("Subject Name:")
+                </div>
+                <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                    @Html.DisplayFor(model => model.tblSubject.subjectName)
+
+
+                </div>
+                <!-- Text input-->
+                <div class="col-sm-3">
+                    @Html.Label("Category Name:")
+                </div>
+                <div class="col-sm-9" style="margin-bottom: 10px;">
+                    @Html.DisplayFor(model => model.categoryName)
+
+                </div>
+
+                <div class="col-sm-3">
+                    @Html.Label("Created By:")
+                </div>
+                <div class="col-sm-9" style="margin-bottom: 10px;">
+                    @Html.DisplayFor(model => model.createdBy)
+
+                </div>
+
+                <!-- Text input-->
+                <div class="col-sm-3">
+                    @Html.Label("Created On:")
+                </div>
+                <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                    @Html.DisplayFor(model => model.createdOn)
+
+
+                </div>
+
+                @{
+                    <div class="col-sm-3">
+                        @Html.Label("Updated By:")
+                    </div>
+
+
+                    if (Model.updatedBy != null)
+                    {
+                        <div class="col-sm-9 " style="margin-bottom: 10px;">
+
+                            @Html.DisplayFor(model => model.updatedBy)
+                        </div>
+
+                    }
+                    else if (Model.updatedBy == null)
+                    {
+                        <p> Not Updated </p>
+
+                    }
+                }
+                <!-- Prepended text-->
+                <!-- Text input-->
+                @{
+                    <div class="col-sm-3">
+                        @Html.Label("Updated On:")
+                    </div>
+
+                    if (Model.updatedOn!=null)
+                    {
+                        <div class="col-sm-9 " style="margin-bottom: 10px;">
+
+                            @Html.DisplayFor(model => model.updatedOn)
+                        </div>
+
+                    }
+                    else if (Model.updatedOn == null)
+                    {
+                        <p> Not Updated </p>
+                    }
+                }
+
+                <!-- Text input-->
+                @*<div class="col-sm-3 control-label">
+            @Html.Label("Status:")
+        </div>
+        <div class="col-sm-9 " style="margin-bottom: 10px;">
+            @Html.DisplayFor(model => model.status)
+
+
+        </div>*@
+            </div>
+        </div>
+        <div class="panel-footer">
+
+            <div class="btn btn-sm btn-success">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.categoryID })
+            </div>
+            <div class="btn btn-sm btn-warning">
+                @Html.ActionLink("Back", "Index")
+            </div>
+
+
+        </div>
+    </div>
+</div>

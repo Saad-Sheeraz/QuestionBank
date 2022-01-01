@@ -1,0 +1,123 @@
+﻿@model DAL.tblUserProfile
+
+@{
+    ViewBag.Title = "EditPersons";
+}
+
+@using (Html.BeginForm("EditPersons", "UserProfiles", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.userType)
+    @Html.HiddenFor(model => model.userid)
+    @Html.HiddenFor(model => model.userid)
+    @Html.HiddenFor(model => model.profilePic)
+    @Html.HiddenFor(model => model.status)
+    <div role="tabpanel" class="tab-pane" id="profile">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Edit Profiles</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row user_profile">
+
+                    <div class="form-horizontal">
+
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        @*@Html.HiddenFor(ViewBag.userdata.Id)*@
+                        @*<input type="hidden" value="ViewBag.userdata.Id" id="ViewBag.userdata.id" />*@
+                        @*@Html.Hidden("hdnfield", (object)ViewBag.thisId)*@
+
+
+                        <div class="col-md-12">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="col-md-5 offset-1">
+                                            @Html.Label("Name:")
+                                            @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+                                        </div>
+                                        @*@Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                        <div class="col-md-5 offset-1">
+                                            @Html.Label("Cnic:")
+                                            @Html.EditorFor(model => model.cnic, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.cnic, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="col-md-5 offset-1">
+                                            @Html.Label("Phone:")
+                                            @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="col-md-5 offset-1">
+                                            @Html.Label("Email:")
+                                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="col-md-5 offset-1">
+                                            @Html.Label("address:")
+                                            @Html.EditorFor(model => model.address, new { htmlattributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                                        </div>
+                                        @*<div class="col-md-5 offset-1">
+                                                @Html.Label("Role:")
+                                                @Html.DropDownList("userType", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.userType, "", new { @class = "text-danger" })
+                                            </div>*@
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    @Html.Label("Picture")
+                                    <img src="~/img/@Model.profilePic" width="100" height="100" />
+                                    <input type="file" title="browse" id="profilePic" name="file" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-sm btn-warning" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <span>
+                    @*<input type="submit" value="Submit" />*@
+                    @*<button type="submit" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i>Save</button>*@
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

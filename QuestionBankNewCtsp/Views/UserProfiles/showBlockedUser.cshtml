@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "showBlockedUser";
+}
+
+<style>
+    body {
+        counter-reset: Serial; /* Set the Serial counter to 0 */
+    }
+
+    table {
+        border-collapse: separate;
+    }
+
+    .auto-index td:first-child:before {
+        counter-increment: Serial; /* Increment the Serial counter */
+        content: "" counter(Serial); /* Display the counter */
+    }
+    .grid-first .g_panel .g_title {
+        background-color: #001023;
+    }
+
+    .row {
+        margin-left: -16px;
+    }
+
+    .g_title .h-transaction h2 {
+        padding-top: 1%;
+        /*padding-bottom:1%;*/
+    }
+
+    .table-responsive {
+        background-color: #001023;
+    }
+
+    .g_panel .g_content {
+        border-color: #001023;
+    }
+</style>
+<div class="row grid-first" id="collapse-grid1">
+  
+        <div class="g_panel" style="display:none">
+            <div style="margin-top:7px">
+                <a href='@Url.Action("Register", "Account")' class="btn btn-primary">Add New</a>
+            </div>
+        </div>
+
+        <div class="g_panel">
+
+
+            <div class="g_title" style="padding:0px;">
+
+                <div class="h-transaction pull-center" style="align-items:center">
+                    <h2 style="text-align:center;text-decoration:underline; color:white">Blocked Users</h2>
+
+                </div>
+                <div class="collapse-btn pull-right">
+                    <a class="collapse-link" data-toggle="collapse" href="#collapse-1" data-parent="#collapse-grid1"><i class="fa fa-chevron-down"></i></a>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="g_content collapse in" id="collapse-1" style="margin:0px">
+                <div class="table-responsive">
+                    <div class="auto-index">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                                <tr class="headings" style="background-color:#e2e0d4 !important">
+                                    <th>Sr#</th>
+                                    <th class="column-title">Name </th>
+                                    <th class="column-title">Email</th>
+                                    <th class="column-title">Cnic</th>
+                                    <th class="column-title">Phone # </th>
+                                    <th class="column-title">Address </th>
+                                    <th class="column-title">Profile</th>
+                                    <th class="column-title">Type</th>
+                                    <th class="column-title">Details</th>
+                                    <th class="column-title">Action</th>
+
+                                    @*<th></th>*@
+
+
+                                    @*<th class="column-title">Status:</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.mylist)
+                                {
+
+                                    <tr style="background-color:papayawhip !important;">
+                                        <td></td>
+                                        <td>
+                                            @item.userName
+                                        </td>
+                                        <td>
+                                            @item.email
+                                        </td>
+                                        <td>
+                                            @item.cnic
+                                        </td>
+                                        <td>
+                                            @item.phone
+                                        </td>
+                                        <td>
+                                            @item.address
+                                        </td>
+                                        <td>
+                                            <img src="~/img/@item.profilePic" width="100" height="100" />
+                                        </td>
+                                        <td>
+                                            @item.userType
+                                        </td>
+
+                                        <td>
+                                            <div class="btn btn-sm btn-warning" style="font-size:small; color:green">
+                                                @Html.ActionLink("Edit", "EditPersons", new { id = item.id })
+                                            </div>
+
+
+                                            @*@Html.ActionLink("Details", "SubjectSpecifications", new { id = item.usID })*@
+
+                                        </td>
+                                        <td>
+                                            <div class="btn btn-sm btn-danger" style="font-size:small; color:green">
+                                                @Html.ActionLink("Unblock", "unblockUser", new { id = item.id })
+                                            </div>
+
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+</div>

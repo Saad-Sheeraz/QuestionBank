@@ -1,0 +1,59 @@
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\bin\Debug\DAL.dll.config
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\bin\Debug\DAL.dll
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\bin\Debug\DAL.pdb
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\obj\Debug\DAL.dll
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\obj\Debug\DAL.pdb
+C:\Users\Saad Sheeraz\source\repos\QustionProjectCTSP\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+D:\websites\QustionProjectCTSP\DAL\bin\Debug\DAL.dll.config
+D:\websites\QustionProjectCTSP\DAL\bin\Debug\DAL.dll
+D:\websites\QustionProjectCTSP\DAL\bin\Debug\DAL.pdb
+D:\websites\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.dll
+D:\websites\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\websites\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.xml
+D:\websites\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\websites\QustionProjectCTSP\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\websites\QustionProjectCTSP\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\websites\QustionProjectCTSP\DAL\obj\Debug\DAL.dll
+D:\websites\QustionProjectCTSP\DAL\obj\Debug\DAL.pdb
+E:\working here\QustionProjectCTSP\DAL\bin\Debug\DAL.dll.config
+E:\working here\QustionProjectCTSP\DAL\bin\Debug\DAL.dll
+E:\working here\QustionProjectCTSP\DAL\bin\Debug\DAL.pdb
+E:\working here\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.dll
+E:\working here\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\working here\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.xml
+E:\working here\QustionProjectCTSP\DAL\bin\Debug\EntityFramework.SqlServer.xml
+E:\working here\QustionProjectCTSP\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+E:\working here\QustionProjectCTSP\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+E:\working here\QustionProjectCTSP\DAL\obj\Debug\DAL.csproj.CopyComplete
+E:\working here\QustionProjectCTSP\DAL\obj\Debug\DAL.dll
+E:\working here\QustionProjectCTSP\DAL\obj\Debug\DAL.pdb
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Debug\DAL.dll.config
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Debug\DAL.dll
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Debug\DAL.pdb
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\obj\Debug\DAL.dll
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\obj\Debug\DAL.pdb
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+D:\QuestionBankNewCtsp\DAL\bin\Debug\DAL.dll.config
+D:\QuestionBankNewCtsp\DAL\bin\Debug\DAL.dll
+D:\QuestionBankNewCtsp\DAL\bin\Debug\DAL.pdb
+D:\QuestionBankNewCtsp\DAL\bin\Debug\EntityFramework.dll
+D:\QuestionBankNewCtsp\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\QuestionBankNewCtsp\DAL\bin\Debug\EntityFramework.xml
+D:\QuestionBankNewCtsp\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\QuestionBankNewCtsp\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+D:\QuestionBankNewCtsp\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\QuestionBankNewCtsp\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\QuestionBankNewCtsp\DAL\obj\Debug\DAL.dll
+D:\QuestionBankNewCtsp\DAL\obj\Debug\DAL.pdb

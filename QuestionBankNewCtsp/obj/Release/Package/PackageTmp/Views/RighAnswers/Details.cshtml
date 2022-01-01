@@ -1,0 +1,74 @@
+﻿@model DAL.tblRighAnswer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblRighAnswer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.questionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.questionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.answerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.answerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.answerid_V)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.answerid_V)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.answerid_A)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.answerid_A)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reasonText_C)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reasonText_C)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reasonText_V)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reasonText_V)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reasonText_A)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reasonText_A)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

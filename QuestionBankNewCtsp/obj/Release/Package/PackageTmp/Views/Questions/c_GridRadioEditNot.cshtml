@@ -1,0 +1,327 @@
+﻿@*@model IEnumerable<DAL.tblQuestion>*@
+@model DAL.tblQuestion
+
+@{
+    /**/
+
+    ViewBag.Title = "c_GridRadioEditNot";
+}
+
+<style>
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 100px;
+        height: 20px;
+        /*margin-top: 6px;*/
+    }
+
+        .switch input {
+            display: none;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 26px;
+            left: 4px;
+            bottom: 0px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+
+
+@using (Ajax.BeginForm("c_GridRadioEditNot", "Questions", FormMethod.Post,
+                          new AjaxOptions
+                          {
+                              OnSuccess = "OnSuccess",
+                              OnFailure = "OnFailure",
+                              LoadingElementId = "progress"
+
+                          }))
+{
+
+    <div class="container">
+        <div style="align-content:center">
+            <h2>View</h2>
+        </div>
+    </div>
+
+    @Html.AntiForgeryToken()
+  @Html.HiddenFor(model=>model.questionID)
+  @Html.HiddenFor(model=>model.categoryId)
+  @Html.HiddenFor(model=>model.subjectId)
+  @Html.HiddenFor(model=>model.degreeId)
+
+    @*----------For showing All Data--------*@
+    <div id="pnlShowGrid" class="row">
+        @{
+            int count = 1, countR = 0, temp = 0, myqid = 0, passQid = 0;
+        }
+        @foreach (var item in ViewBag.specificdata)
+        {
+            if (myqid == 0 || myqid == item.questionID)
+            {
+        <div class=" " style="border: 1px solid #000000; width: 100%; border-radius: 4px; margin-top: 40px; background-color: #ffffff; padding: 0px;">
+
+            <div style="@(item.picBool? "display:block" : "display:none")">              
+                <div style="float:initial;">
+                    <img src="~/questionIMG/@item.questionPic" width="250" height="200" />
+                </div>
+            </div>
+
+
+            <div class="Question" style="padding: 1%;">
+                @*<input type="checkbox" id="qid" class="chk" value="@item.questionID" />*@
+                <span class="label label-warning"> @string.Format("{0}{1}.", "Q", count)</span>
+                <input type="hidden" id="qText" class="chkText" value="@item.questionText" />
+                <span id="@string.Format("{0}{1}", "ID_Q", count)" style="display:none;">@item.questionID</span>
+                <p style="display: inline; @*padding: 2%;*@" id="@string.Format("{0}{1}", "Q", count)"><strong>@Html.Raw(item.questionText)</strong></p>
+
+            </div>
+        </div>
+
+                <div class="" style=" background-color:#add8e6; border: 1px solid #000000; width: 100%; border-radius: 4px; margin-top: 0px;margin-bottom:-39px; padding: 1%;">
+                    <div class="Choices" id="@item.questionID">
+                        @foreach (var choice in ViewBag.specificdata)
+                        {
+                            if (choice.rightID > 0)
+                            {
+                        <div class="form-group row ">
+                            <div class="col-sm-1">
+                                <strong>
+                                    <label class="switch">
+                                        @*<input type="checkbox" id="chkOption" onchange="abc()">*@
+                                        <input type="radio" name="chkOption" checked="checked" class="@choice.rightID" id="@choice.rightID" value="@choice.rightID" onclick="abc(this.id)">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </strong>
+                            </div>
+                            @*style="display:none"*@
+                            <div class="col-sm-2">
+                                <label id="C_@choice">Correct</label>
+                                <label id="I_@choice" style="display:none">In Correct</label>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <strong>@Html.Raw(choice.answerText1)</strong>
+                                @*<input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions", count)" class="@choice.answerID" id="@choice.answerID" value="@choice.answerText1" style="margin-left: -16px;" onclick=""> @choice.answerText1*@
+                            </div>
+
+                            <div style="@(choice.ansPicBool? "display:block" : "display:none")">
+                                
+                                <div class="col-sm-3">
+                                    <img src="~/questionIMG/@choice.answerPic" width="100" height="100" />
+                                </div>
+                            </div>
+                            @*<div class="col-sm-2">
+            @Html.ActionLink("Edit", "v_editAnswerBox", new { id = choice.rightID }, new { @class = "btn btn-warning" })
+        </div>*@
+
+
+                        </div>
+                            }
+                            else if (choice.rightID == 0 && choice.questionID == item.questionID)
+                            {
+                        <div class="form-group row ">
+                            <div class="col-sm-1">
+                                <strong>
+                                    <label class="switch">
+                                        @*<input type="checkbox" id="chkOption" onchange="abc()">*@
+                                        <input type="radio" name="chkOption" class="@choice.answerID" id="@choice.answerID" value="@choice.answerID" onclick="abc(this.id)">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </strong>
+                            </div>
+                            @*style="display:none"*@
+                            <div class="col-sm-2">
+                                <label id="C_@choice" style="display:none">Correct</label>
+                                <label id="I_@choice">In Correct</label>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <strong>@Html.Raw(choice.answerText1)</strong>
+                                @*<input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions", count)" class="@choice.answerID" id="@choice.answerID" value="@choice.answerText1" style="margin-left: -16px;" onclick=""> @choice.answerText1*@
+                            </div>
+
+                            <div style="@(choice.ansPicBool? "display:block" : "display:none")">                              
+                                <div class="col-sm-3">
+                                    <img src="~/questionIMG/@choice.answerPic" width="100" height="100" />
+                                </div>
+                            </div>
+
+
+                            @*<div class="col-sm-2">
+            @Html.ActionLink("Edit", "v_editAnswerBox", new { id = choice.answerID }, new { @class = "btn btn-warning" })
+        </div>*@
+                        </div>
+
+                            }
+                            countR++;
+                            temp++;
+
+                        }
+
+
+                        @*<div class="radio-inline"  >*@
+
+                        <input type="hidden" id="radio-previous" name="radio-previous" value="" />
+                    </div>
+                </div>
+                <div id="@string.Format("{0}{1}{2}", "Ans", "Q", count)">
+                </div>
+                count++;
+                myqid = item.questionID;
+                myqid++;
+                passQid = item.questionID;
+            }
+          
+        }
+
+        <input type="submit" value="Back" class="btn btn-success" name="backbtn" />
+
+    </div>
+}
+<script>
+
+      function abc(id) {
+        debugger;
+        var clicks = new Array();
+        clicks[0] = id //this should be the default value, if there is one
+        $('input[name$="chkOption"]').change(function ()
+        {
+            clicks.push($(this).val())
+            $('#radio-previous').val(clicks[clicks.length - 2])
+        })
+        var pID = "";
+        if (pID == "" || pID == 1) {
+            if (pID == 1) {
+                pID == id;
+            }
+            else {
+                pID = $('#radio-previous').val();
+            }
+
+        }
+        else {
+            pID = $('#radio-previous').val();
+        }
+      //  alert(pID);
+        if (document.getElementById(id).checked == true)
+        {
+            var cid = 'C_' + id;
+            var pID1 = 'C_' + pID;
+            var Iid = 'I_' + id;
+            var IpID = 'I_' + pID;
+
+            $('#'+ cid).show();
+            $('#' + Iid).hide();
+
+            if (pID == "" || pID == 1) {
+                $('#radio-previous').val(id) ;
+                //$('#' + pID1).show();
+                //$('#' + IpID).hide();
+            }
+            else {
+                $('#' + pID1).hide();
+                $('#' + IpID).show();
+            }
+
+
+        }
+        if (document.getElementById(id).checked == false) {
+            var cid = 'C_' + id;
+            var pID = 'C_' + pID;
+            var Iid = 'I_' + id;
+            var IpID = 'I_' + pID;
+
+            $('#' + cid).hide();
+            // $('#'+ pID).hide();
+            $('#' + Iid).show();
+        }
+
+    }
+    var a;
+    function CallChangefunc(val) {
+        // alert(val);
+        a = val;
+
+    }
+
+    function myFunc()
+    {
+        debugger;
+        var catId = $('#Survey option:selected').val();
+        a = catId;
+         //alert(a);
+        if (a != undefined && a != "") {
+            var valId = a;
+            var customVal = $("#customInput").data("value");
+            var url = '@Url.Action("SurveyOption", "Patients")';
+           // var url = '@Url.Action("Survey", "SurveyQuestions")';
+            window.location.href = url + "?valId=" + valId + "&customVal=" + customVal;
+
+        }
+        else {
+            alert("Please select survey to proceed");
+        }
+
+    }
+
+        function OnSuccess(response) {
+            alert("Data Displayed");
+            $('#thisDiv').html(response);
+        }
+    function OnFailure(response) {
+        alert("Error occured.");
+    }
+    //--------------------------------------ending tables-----------------------------------------------------
+</script>
+
+
+
+

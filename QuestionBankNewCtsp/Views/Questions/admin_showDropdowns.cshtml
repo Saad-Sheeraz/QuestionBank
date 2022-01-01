@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "admin_showDropdowns";
+}
+<style>
+    .panel-footer{
+       
+       /*text-align:center;*/
+    }
+</style>
+@using (Ajax.BeginForm("admin_showDropdowns", "Questions",
+                          new AjaxOptions
+                          {
+                              OnSuccess = "OnSuccess",
+                              OnFailure = "OnFailure",
+                              LoadingElementId = "progress"
+                          }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row" id="pnl1" style="margin-right:0px">
+        <div role="tabpanel" class="tab-pane" id="profile">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Admin View Question</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="name"><h3>Degree</h3></div>
+
+                                <div class="value">
+                                    <div class="input-group">
+                                        @Html.DropDownList("degreeId", null, "-- select degree name --", htmlAttributes: new { @class = "dropbtn" })
+                                        @*@Html.ValidationMessageFor(model => model.degreeId, "", new { @class = "text-danger" })*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-row">
+                                <div class="name"><h3>Subject</h3> </div>
+                                <div class="value">
+                                    <div class="input-group">
+
+                                        @Html.DropDownList("subjectId", null, "-- select subject name --", htmlAttributes: new { @class = "dropbtn" })
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-row">
+                                <div class="name"><h3>Content</h3></div>
+                                <div class="value">
+                                    <div class="input-group">
+
+                                        @Html.DropDownList("categoryId", null, "-- select content --", htmlAttributes: new { @class = "dropbtn" })
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel-footer">
+                    <input type="submit" value="Next" name="this" style="align-items:center" class="btn btn-success" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<script>
+      $('#degreeId').on('change', function () {
+        debugger;
+        var division = $('#degreeId option:selected').val();
+       // alert(gender);
+        var myvar1 = $('#degreeId option:selected').text();
+        $('#myVar').val($('#degreeId option:selected').text());
+             $.ajax({
+                type: 'Get',
+                 data: { division: division },
+                url: '@Url.Action("GetDegree", "Questions")',
+                success: function (result) {
+                debugger;
+                //$('#tblPostInformation_ctspCode').val(result);
+                var itemName = "";
+                var s = '<option value="">-- Select --</option>';
+                $.each(result, function (i, val) {
+                    itemName = val.subjectName;
+                    s += "<option value='" + val.subjectID + "'>" + itemName + "</option>";
+                });
+                    $('#subjectId').html(s);
+                }
+                });
+    });
+
+
+     $('#subjectId').on('change', function () {
+        debugger;
+         var division = $('#subjectId option:selected').val();
+         $('#myVar1').val($('#subjectId option:selected').text());
+       // alert(gender);
+             $.ajax({
+                type: 'Get',
+                 data: { division: division },
+                url: '@Url.Action("GetSubject", "Questions")',
+                success: function (result) {
+                    debugger;
+                //$('#tblPostInformation_ctspCode').val(result);
+                var itemName = "";
+                var s = '<option value="">-- Select --</option>';
+                $.each(result, function (i, val) {
+                    itemName = val.categoryName;
+                    s += "<option value='" + val.categoryID + "'>" + itemName + "</option>";
+                });
+                    $('#categoryId').html(s);
+                }
+                });
+    });
+
+
+    function Next() {
+        debugger;
+        if ($('#degreeId option:selected').val() == "") {
+            alert("Please Select Degree");
+        }
+        else if ($('#subjectId option:selected').val() == "") {
+            alert("Please Select Subject");
+        }
+        else if ($('#categoryId option:selected').val() == "") {
+            alert("Please Select Category");
+        }
+        else {
+            $('#pnl1').hide();
+            $('#pnlShowGrid').show();
+        }
+
+    }
+</script>
+

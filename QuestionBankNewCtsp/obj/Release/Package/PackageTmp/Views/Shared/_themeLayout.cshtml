@@ -1,0 +1,313 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<title>@ViewBag.Title</title>*@
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Dashboard</title>
+    <!-- Bootstrap -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+
+    <!-- Morris chart -->
+    <!-- Styleswitcher ( This style is for demo purposes only, you may delete this anytime. ) -->
+    <link rel="stylesheet" id="theme-switch" href="~/Content/css/style.css">
+    <!-- End demo purposes only -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="~/Scripts/ckfinder/ckfinder.js"></script>
+
+    @*---------if panga? uncomment below-------------*@
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    @*---------adding js for table-------------*@
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <style>
+        /* For demo purpose only */
+
+        /* For Demo Purposes Only ( You can delete this anytime :-) */
+        #colour-variations {
+            padding: 10px;
+            -webkit-transition: 0.5s;
+            -o-transition: 0.5s;
+            transition: 0.5s;
+            width: 140px;
+            position: fixed;
+            right: 0;
+            top: 100px;
+            z-index: 999999;
+            background: #fff;
+            /*border-radius: 4px;*/
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            -webkit-box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+            -moz-box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+            -ms-box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+            box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+        }
+
+            #colour-variations.sleep {
+                margin-right: -140px;
+            }
+
+            #colour-variations h3 {
+                text-align: center;
+                ;
+                font-size: 11px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: #777;
+                margin: 0 0 10px 0;
+                padding: 0;
+                ;
+            }
+
+            #colour-variations ul,
+            #colour-variations ul li {
+                padding: 0;
+                margin: 0;
+            }
+
+            #colour-variations li {
+                list-style: none;
+                display: inline;
+            }
+
+                #colour-variations li a {
+                    width: 20px;
+                    height: 20px;
+                    position: relative;
+                    float: left;
+                    margin: 5px;
+                }
+
+                    #colour-variations li a[data-theme="style"] {
+                        background: #500777;
+                    }
+
+                    #colour-variations li a[data-theme="pink"] {
+                        background: #f64662;
+                    }
+
+                    #colour-variations li a[data-theme="blue"] {
+                        background: #2185d5;
+                    }
+
+                    #colour-variations li a[data-theme="turquoise"] {
+                        background: #00b8a9;
+                    }
+
+                    #colour-variations li a[data-theme="orange"] {
+                        background: #ff6600;
+                    }
+
+                    #colour-variations li a[data-theme="lightblue"] {
+                        background: #5585b5;
+                    }
+
+                    #colour-variations li a[data-theme="brown"] {
+                        background: #a03232;
+                    }
+
+                    #colour-variations li a[data-theme="green"] {
+                        background: #65d269;
+                    }
+
+        .option-toggle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            margin-top: 5px;
+            margin-left: -30px;
+            width: 30px;
+            height: 30px;
+            background: #f64662;
+            text-align: center;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            -webkit-box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+            -moz-box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+            -ms-box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+            box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+        }
+
+            .option-toggle i {
+                top: 2px;
+                position: relative;
+            }
+
+            .option-toggle:hover, .option-toggle:focus, .option-toggle:active {
+                color: #fff;
+                text-decoration: none;
+                outline: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="container" style="padding:0px;">
+        <div class="dashboard">
+            <div class="row" style="margin:0;">
+                <!-- left-col -->
+                <div class="col-md-2 col-sm-2 leftbar">
+                    <div class="left-col">
+                        <div class="user">
+                            <a href=""><img src="~/Content/img/logo.png" /></a>
+                        </div>
+                        <div class="menu">
+                            <ul>
+                                @if (User.IsInRole("Creator"))
+                                {
+
+                                    <li><a href="/Questions/c_dashboard" data-toggle=""><i class="fa fa-home"></i>Dashboard</a></li>
+                                    <li><a href="/UserProfiles/Index" data-toggle=""><i class="fa fa-user"></i>Profiles</a></li>
+                                    <li><a href="/Questions/c_AddQmainview" data-toggle=""><i class="fa fa-question-circle"></i>Add Q&A</a></li>
+                                    <li><a href="/Questions/c_showQmainview" data-toggle=""><i class="fa fa-question-circle"></i>Questions</a></li>
+                                }
+                                @if (User.IsInRole("Verifier"))
+                                {
+                                    <li><a href="/Questions/c_dashboard" data-toggle=""><i class="fa fa-home"></i>Dashboard</a></li>
+                                    <li><a href="/Questions/v_mainview" data-toggle=""><i class="fa fa-thumbs-up"></i>Verify</a></li>
+                                    <li><a href="/UserProfiles/Index" data-toggle=""><i class="fa fa-user"></i>Profiles</a></li>
+                                }
+                                @if (User.IsInRole("Approver"))
+                                {
+                                    <li><a href="/Questions/c_dashboard" data-toggle=""><i class="fa fa-home"></i>Dashboard</a></li>
+                                    <li><a href="/Questions/a_mainview" data-toggle=""><i class="fa fa-thumbs-o-up"></i>Approve </a></li>
+                                    <li><a href="/UserProfiles/Index" data-toggle=""><i class="fa fa-user"></i>Profiles</a></li>
+                                }
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li><a href="/UserProfiles/ShowPersons" data-toggle=""><i class="fa fa-users"></i>Register</a></li>
+                                    <li><a href="/Degrees/Create" data-toggle=""><i class="fa fa-users"></i>Add Class</a></li>
+                                    <li><a href="/Subjects/Create" data-toggle=""><i class="fa fa-book"></i>Add Subjects</a></li>
+                                    <li><a href="/Categories/Create" data-toggle=""><i class="fa fa-bookmark"></i>Add Contents</a></li>
+                                    <li><a href="/Books/Index" data-toggle=""><i class="fa fa-book"></i>Add Book </a></li>
+                                    @*<li><a href="/UserProfiles/Index" data-toggle=""><i class="fa fa-user"></i>Profiles</a></li>*@
+                                    @*<li><a href="/UserProfiles/showspecs" data-toggle=""><i class="fa fa-user"></i>Specifications</a></li>*@
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /left-col -->
+                <!-- right-col -->
+                <div class="col-md-10 col-sm-10 db-right-section">
+                    <div class="right-col">
+                        <div class="topbar">
+                            <div class="left-content pull-left">
+                                <div class="toggle pull-left">
+                                    <a href="#" class="trigger-sidebar" data-toggle="tooltip" data-placement="left" title="Toggle/Collapse"> <i class="fa fa-bars"></i></a>
+                                </div>
+                                <div class="heading pull-left">Question Bank</div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="right-content pull-right">
+                                <ul class="social-icon">
+                                    @Html.AntiForgeryToken()
+
+                                    <li>
+                                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                    </li>
+
+                                    <li data-toggle="dropdown-menu" data-placement="left" title="Logout">
+                                        <a href="/Account/logitout"><i class="fa fa-fw fa-user" aria-hidden="false" style="margin:0;"></i><p>Logout</p></a>
+
+                                        @*<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+            </ul>*@
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                          
+                        </div>
+                        <i class="fas fa-user-tie"></i>
+
+
+                        <div>
+
+
+                            <!-- /if panga uncomment below-col -->
+                            @RenderBody()
+                            @*@Scripts.Render("~/bundles/jquery")*@
+                            @Scripts.Render("~/bundles/bootstrap")
+                            @Scripts.Render("~/bundles/ckeditor")
+                            @RenderSection("scripts", required: false)
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /right-col -->
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="footer">
+                <div class="copyright pull-left">
+                    Copyright SaadDev
+                </div>
+                <div class="terms pull-right">
+                    <a href="">Terms & Conditions</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script>
+        $('.trigger-sidebar').click(function () {
+            $('.leftbar').slideToggle();
+            $('.db-right-section').toggleClass('full-width');
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("ul.collapse-list").click(function () {
+                $("ul.collapse-list").removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+    </script>
+    <!-- For demo purposes only styleswitcher ( You may delete this anytime ) -->
+    <script src="~/Content/js/jquery.style.switcher.js"></script>
+    <script>
+        $(function () {
+            $('#colour-variations ul').styleSwitcher({
+                defaultThemeId: 'theme-switch',
+                hasPreview: false,
+                cookie: {
+                    expires: 30,
+                    isManagingLoad: true
+                }
+            });
+            $('.option-toggle').click(function () {
+                $('#colour-variations').toggleClass('sleep');
+            });
+        });
+    </script>
+    <!-- End demo purposes only -->
+</body>
+</html>

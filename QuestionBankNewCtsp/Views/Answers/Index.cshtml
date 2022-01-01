@@ -1,0 +1,94 @@
+﻿@model IEnumerable<DAL.tblAnwer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.questionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.answerText1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.answerText2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.answerText3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.answerText4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.answerRight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updatedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.questionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.answerText1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.answerText2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.answerText3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.answerText4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.answerRight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createdBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createdOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updatedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.answerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.answerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.answerID })
+        </td>
+    </tr>
+}
+
+</table>

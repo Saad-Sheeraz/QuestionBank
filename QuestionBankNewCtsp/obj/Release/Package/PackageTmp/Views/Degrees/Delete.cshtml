@@ -1,0 +1,100 @@
+﻿@model DAL.tblDegree
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div role="tabpanel" class="tab-pane" id="profile">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Are you sure you want to delete this?</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row user_profile">
+
+                        <!-- Text input-->
+                        <div class="col-sm-3">
+                            @Html.Label("Degree Name:")
+                        </div>
+                        <div class="col-sm-9" style="margin-bottom: 10px;">
+                            <span>
+                                @Html.DisplayFor(model => model.degreeName)
+                            </span>
+
+                        </div>
+                        <!-- Text input-->
+                        <div class="col-sm-3">
+                            @Html.Label("Created By:")
+                        </div>
+                        <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                            @Html.DisplayFor(model => model.createdBy)
+                            <p>no val yet</p>
+
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="col-sm-3">
+                            @Html.Label("Created On:")
+                        </div>
+                        <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                            @Html.DisplayFor(model => model.createdOn)
+                            <p>no val yet</p>
+                        </div>
+
+                        <!-- Prepended text-->
+                        <div class="col-sm-3">
+                            @Html.Label("Updated By:")
+                        </div>
+
+                        <div class="col-sm-9 " style="margin-bottom: 10px;">
+                            <span>
+                                @Html.DisplayFor(model => model.updatedBy)
+                                <p>no val yet</p>
+                            </span>
+                        </div>
+                        <!-- Text input-->
+                        <div class="col-sm-3">
+                            @Html.Label("Updated On:")
+                        </div>
+
+                        <div class="col-sm-9 " style="margin-bottom: 10px;">
+                            <span>
+                                @Html.DisplayFor(model => model.updatedOn)
+                                <p>no val yet</p>
+                            </span>
+                        </div>
+                        <!-- Text input-->
+                        <div class="col-sm-3 control-label">
+                            @Html.Label("Status:")
+                        </div>
+                        <div class="col-sm-9 " style="margin-bottom: 10px;">
+                            <span>
+                                @Html.DisplayFor(model => model.status)
+
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <span>
+                        <input type="submit" value="Delete" class="btn btn-default" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions no-color">
+
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+    }
+</div>

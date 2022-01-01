@@ -1,0 +1,312 @@
+﻿
+<div class="container">
+    <div style="text-align:center">
+        @*<h1>Sections</h1>*@
+    </div>
+</div>
+
+<div role="tabpanel" class="tab-pane" id="profile">
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Dashboard</h3>
+        </div>
+
+        <div class="control-panel" style="margin-top:2%">
+            <div class="other-panel">
+                <div class="row list-box">
+                    @{
+                        if (ViewBag.usertype == "Admin")
+                        {
+                          
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="primary-panel">
+                                    <h4>Questions</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{ <label style="font-size:xx-large">
+                                                @ViewBag.qcount
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="primary-btn">
+                                        @*<button type="button" class="btn btn-default">View All</button>*@
+                                        <input type="button" class="btn btn-primary" value="View All" onclick="location.href='@Url.Action("admin_DashQuestions", "Questions")'" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="warning-panel">
+                                    <h4>Class/Degree</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{ <label style="font-size:xx-large">
+                                                @ViewBag.deg_count
+                                            </label>
+
+                                        }
+                                    </div>
+                                    <div class="default-btn">
+                                        <input type="button" class="btn btn-warning" value="View All" onclick="location.href='@Url.Action("Index", "Degrees")'" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="danger-panel">
+                                    <h4>Subjects</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{ <label style="font-size:xx-large">
+                                                @ViewBag.sub_count
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="default-btn">
+                                        @*<button type="button" class="btn btn-danger">View All</button>*@
+                                        <input type="button" class="btn btn-danger" value="View All" onclick="location.href='@Url.Action("Index", "Subjects")'" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="success-panel">
+                                    <h4>Topics</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{ <label style="font-size:xx-large">
+                                                @ViewBag.cat_count
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="success-btn">
+                                        <input type="button" class="btn btn-success" value="View All" onclick="location.href='@Url.Action("Index", "Categories")'" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="info-panel">
+                                    <h4>Users</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{ <label style="font-size:xx-large">
+                                                @ViewBag.usercount
+                                            </label>
+
+                                        }
+                                    </div>
+
+                                    <div class="info-btn">
+                                        <input type="button" class="btn btn-info" value="View All" onclick="location.href='@Url.Action("ShowPersons", "UserProfiles")'" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        if (ViewBag.usertype == "Creator")
+                        {
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="default-panel">
+                                    <h4>Pending Question</h4>
+                                    <div class="container" style="text-align:center">
+                                        <label style="font-size:xx-large">
+                                            @ViewBag.pend_q
+                                        </label>
+                                    </div>
+
+                                    <div class="default-btn">
+                                        <input type="button" class="btn btn-default" value="View All" onclick="location.href='@Url.Action("creator_ViewPendingQuestion", "Questions")'" />
+                                        @*<button type="button" class="btn btn-default">View All</button>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="info-panel">
+                                    <h4>Verified Question</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{
+                                            <label style="font-size:xx-large">
+                                                @ViewBag.ver_q
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="info-btn">
+                                        <input type="button" class="btn btn-default" value="View All" onclick="location.href='@Url.Action("creator_ViewVerifiedQuestion", "Questions")'" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="success-panel">
+                                    <h4>Approved Questions</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{
+                                            <label style="font-size:xx-large">
+                                                @ViewBag.app_q
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="success-btn">
+                                        <input type="button" class="btn btn-success" value="View All" onclick="location.href='@Url.Action("creator_ViewApprovedQuestion", "Questions")'" />
+                                        @*<button type="button" class="btn btn-success">View All</button>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="danger-panel">
+                                    <h4>Discarded Questions</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{
+                                            <label style="font-size:xx-large">
+                                                @ViewBag.discarded_q
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="default-btn">
+                                        @*<button type="button" class="btn btn-danger">View All</button>*@
+                                        <input type="button" class="btn btn-danger" value="View All" onclick="location.href='@Url.Action("creator_ViewDiscardedQuestion", "Questions")'" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="danger-panel">
+                                    <h4>Total Questions</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{
+                                            <label style="font-size:xx-large">
+                                                @ViewBag.totalQ
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="default-btn">
+                                        @*<button type="button" class="btn btn-danger">View All</button>*@
+                                        <input type="button" class="btn btn-danger" value="View All" onclick="location.href='@Url.Action("creator_ViewAllQuestion", "Questions")'" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        if (ViewBag.usertype == "Verifier")
+                        {
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="success-panel">
+                                    <h4>Verified Questions</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{
+                                            <label style="font-size:xx-large">
+                                                @ViewBag.ver_q
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="success-btn">
+
+                                        <input type="button" class="btn btn-success" value="View All" onclick="location.href='@Url.Action("verifier_ViewVerifiedQuestion", "Questions")'" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="info-panel">
+                                    <h4>Approved Questions</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{
+                                            <label style="font-size:xx-large">
+                                                @ViewBag.app_q
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="info-btn">
+                                        <input type="button" class="btn btn-info" value="View All" onclick="location.href='@Url.Action("verifier_ViewApprovedQuestion", "Questions")'" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="danger-panel">
+                                    <h4>Discarded Question</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{
+                                            <label style="font-size:xx-large">
+                                                @ViewBag.discarded_q
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="default-btn">
+                                        <input type="button" class="btn btn-danger" value="View All" onclick="location.href='@Url.Action("verifier_ViewDiscardedQuestion", "Questions")'" />
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="primary-panel">
+                                    <h4>All Question</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{
+                                            <label style="font-size:xx-large">
+                                                @ViewBag.totalQ
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="primary-btn">
+                                        <input type="button" class="btn btn-primary" value="View All" onclick="location.href='@Url.Action("verifier_ViewAllQuestions", "Questions")'" />
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        }
+
+                        if (ViewBag.usertype == "Approver")
+                        {
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="info-panel">
+                                    <h4>Approved Questions</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{
+                                            <label style="font-size:xx-large">
+                                                @ViewBag.app_q
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="info-btn">
+                                        <input type="button" class="btn btn-info" value="View All" onclick="location.href='@Url.Action("approver_viewApprovedQuestion", "Questions")'" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box" style="display:none">
+                                <div class="info-panel">
+                                    <h4>Discarded Questions</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{
+                                            <label style="font-size:xx-large">
+                                                @ViewBag.app_q
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="info-btn">
+                                        <input type="button" class="btn btn-info" value="View All" onclick="location.href='@Url.Action("verifier_ViewApprovedQuestion", "Questions")'" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 list-box">
+                                <div class="primary-panel">
+                                    <h4>Total Questions</h4>
+                                    <div class="container" style="text-align:center">
+                                        @{
+                                            <label style="font-size:xx-large">
+                                                @ViewBag.app_q
+                                            </label>
+                                        }
+                                    </div>
+                                    <div class="primary-btn">
+                                        <input type="button" class="btn btn-primary" value="View All" onclick="location.href='@Url.Action("verifier_ViewApprovedQuestion", "Questions")'" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+</div>

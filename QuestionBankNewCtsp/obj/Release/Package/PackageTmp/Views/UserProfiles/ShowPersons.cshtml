@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "ShowPersons";
+}
+<style>
+    body {
+        counter-reset: Serial; /* Set the Serial counter to 0 */
+    }
+
+    table {
+        border-collapse: separate;
+    }
+
+    .auto-index td:first-child:before {
+        counter-increment: Serial; /* Increment the Serial counter */
+        content: "" counter(Serial); /* Display the counter */
+    }
+</style>
+<div class="row grid-first" id="collapse-grid1">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="g_panel">
+            <div style="margin-top:7px">
+                @*<a href='@Url.Action("Create", "Degrees")' class="btn btn-primary">Add New</a>*@
+            </div>
+        </div>
+
+        <div class="g_panel">
+
+            <a href='@Url.Action("Register", "Account")' class="btn btn-primary">Add New</a>
+            @*@Html.ActionLink("Create New", "Create")*@
+
+
+            <div class="g_title">
+                <div class="h-transaction pull-left" style="align-items:center">
+
+                    <div class="container">
+                        <div style="align-items:center">
+                            <h2 style="align-items:center">Users Info: </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse-btn pull-right">
+                    <a class="collapse-link" data-toggle="collapse" href="#collapse-1" data-parent="#collapse-grid1"><i class="fa fa-chevron-down"></i></a>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="g_content collapse in" id="collapse-1">
+                <div class="table-responsive">
+                    <div class="auto-index">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                                <tr class="headings" style="background-color:#e2e0d4 !important">
+                                    <th>Sr#</th>
+                                    <th class="column-title">Name </th>
+                                    <th class="column-title">Email</th>
+                                    <th class="column-title">Cnic</th>
+                                    <th class="column-title">Phone # </th>
+                                    <th class="column-title">Address </th>
+                                    <th class="column-title">Profile</th>
+                                    <th class="column-title">Type</th>
+                                    <th class="column-title">Details</th>
+
+                                    <th></th>
+
+
+                                    @*<th class="column-title">Status:</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.mylist)
+                                {
+
+                                    <tr style="background-color:papayawhip !important;">
+                                        <td></td>
+                                        <td>
+                                            @item.userName
+                                        </td>
+                                        <td>
+                                            @item.email
+                                        </td>
+                                        <td>
+                                            @item.cnic
+                                        </td>
+                                        <td>
+                                            @item.phone
+                                        </td>
+                                        <td>
+                                            @item.address
+                                        </td>
+                                        <td>
+                                            <img src="~/img/@item.profilePic" width="100" height="100" />
+                                        </td>
+                                        <td>
+                                            @item.userType
+                                        </td>
+
+                                        <td>
+
+                                            @*@Html.ActionLink("Details", "SubjectSpecifications", new { id = item.usID })*@ 
+                                            
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

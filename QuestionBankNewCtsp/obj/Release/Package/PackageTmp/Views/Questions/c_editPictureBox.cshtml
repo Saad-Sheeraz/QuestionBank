@@ -1,0 +1,41 @@
+﻿@model DAL.tblQuestion
+
+@{
+    ViewBag.Title = "c_editPictureBox";
+}
+
+<h2>Edit Question:</h2>
+
+@using (Html.BeginForm("c_editPictureBox", "Questions", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.questionID)
+    @Html.HiddenFor(model => model.categoryId)
+    @Html.HiddenFor(model => model.subjectId)
+    @Html.HiddenFor(model => model.complexityId)
+    @Html.HiddenFor(model => model.bookId)
+    @Html.HiddenFor(model => model.bookPageNum)
+    @Html.HiddenFor(model => model.createdBy)
+    @Html.HiddenFor(model => model.createdOn)
+    @Html.HiddenFor(model => model.questionText)
+
+
+    <div class="form-group">
+        <div class="col-md-2">
+            <div class="form-group">
+                <img src="~/questionIMG/@Model.questionPic" width="450" height="400" />
+                <input type="file" title="browse" id="questionPic" name="file" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}

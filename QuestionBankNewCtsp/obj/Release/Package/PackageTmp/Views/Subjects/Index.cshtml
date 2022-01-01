@@ -1,0 +1,89 @@
+﻿@model IEnumerable<DAL.tblSubject>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row grid-first" id="collapse-grid1">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="g_panel">
+            <div style="margin-top:7px">
+                <a href='@Url.Action("Create", "Subjects")' class="btn btn-primary">Add New</a>
+            </div>
+        </div>
+        <div class="g_panel">
+
+            <div class="g_title">
+                <div class="h-transaction pull-left">
+                    <h2>Class & Subject</h2>
+                </div>
+                <div class="collapse-btn pull-right">
+                    <a class="collapse-link" data-toggle="collapse" href="#collapse-1" data-parent="#collapse-grid1"><i class="fa fa-chevron-down"></i></a>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="g_content collapse in" id="collapse-1">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings" style="background-color:#e2e0d4 !important">
+                                <th class="column-title">Degree/Class: </th>
+                                <th class="column-title">Subject: </th>
+                                <th class="column-title">Created By: </th>
+                                <th class="column-title">Created On:</th>
+                                <th class="column-title">Updated By: </th>
+                                <th class="column-title">Updated On: </th>
+                                <th class="column-title">Status:</th>
+                                <th></th>
+                               
+                               
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr class="even pointer">
+                                @foreach (var item in Model)
+                                {
+                                <tr style="background-color:papayawhip !important;">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tblDegree.degreeName)
+                                    </td>
+                                    <td>
+                                     
+                                        @Html.DisplayFor(modelItem => item.subjectName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.createdBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.createdOn)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.updatedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.updatedOn)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.status)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.subjectID }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.subjectID }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.subjectID })
+                                    </td>
+                                </tr>
+                            }
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

@@ -1,0 +1,462 @@
+﻿@model DAL.tblQuestion
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Ajax.BeginForm("c_AddQmainview", "Questions", FormMethod.Post,
+                   new AjaxOptions
+                   {
+                       OnSuccess = "OnSuccess",
+                       OnFailure = "OnFailure",
+                       LoadingElementId = "progress"
+
+                   }, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.iteratequestions)
+
+   
+
+    @*@Html.HiddenFor(model=>model.checkit)*@
+    <div class="row" id="pnl1" style="margin-right:0px">
+        <div role="tabpanel" class="tab-pane" id="profile">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Insert Question</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="name"><h3>Degree</h3></div>
+
+                                <div class="value">
+                                    <div class="input-group">
+                                        @Html.DropDownList("degreeId", null, "-- select degree name --", htmlAttributes: new { @class = "dropbtn" })
+                                        @*@Html.ValidationMessageFor(model => model.degreeId, "", new { @class = "text-danger" })*@
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-row">
+                                <div class="name"><h3>Subject</h3> </div>
+                                <div class="value">
+                                    <div class="input-group">
+
+                                        @Html.DropDownList("subjectId", null, "-- select subject name --", htmlAttributes: new { @class = "dropbtn" })
+                                        @Html.ValidationMessageFor(model => model.subjectId, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-row">
+                                <div class="name"><h3>Content</h3></div>
+                                <div class="value">
+                                    <div class="input-group">
+
+                                        @Html.DropDownList("categoryId", null, "-- select content --", htmlAttributes: new { @class = "dropbtn" })
+                                        @Html.ValidationMessageFor(model => model.categoryId, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel-footer">
+                    <input type="button" id="btnNext" class="btn btn-success" value="Next" onclick="Next()" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form>
+        <div class="row" style="display:none;" id="pnlQuestion">
+            <div class="container" id="mycards">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <div class="panel-group">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading" style="font-size:large">Class:</div>
+                                <div class="panel-body" style="background-color:greenyellow">
+                                    <input type="text" id="myVar" disabled="disabled" style="background-color:greenyellow;border-width:0px" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel-group">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading" style="font-size:large">Subject:</div>
+                                <div class="panel-body" style="background-color:greenyellow">
+                                    <input type="text" id="myVar1" disabled="disabled" style="background-color:greenyellow;border-width:0px" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel-group">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading" style="font-size:large">Content:</div>
+                                <div class="panel-body" style="background-color:greenyellow">
+                                    <input type="text" id="myVar2" disabled="disabled" style="background-color:greenyellow;border-width:0px" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @{
+                        var data = ViewBag.count;
+                    }
+                    <div class="col-md-3">
+                        <div class="panel-group">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading" style="font-size:large">Counter:</div>
+                                <div class="panel-body" style="background-color:greenyellow">
+                                    @*@Html.Label((string)ViewBag.count)*@
+                                    <div id="someLabel"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div id="mydata">
+                @Html.HiddenFor(model => model.scheckit)
+               
+                <input type="hidden" value="@ViewBag.iterateval" id="myiterate" />
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <h4>Level:</h4>
+                        @Html.DropDownList("complexityId", null, "--select level--", htmlAttributes: new { @class = "dropbtn", required = "required" })
+                        @Html.ValidationMessageFor(model => model.complexityId, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Book-Name:</h4>
+
+                        @Html.DropDownList("bookId", null, "--select book--", htmlAttributes: new { @class = "dropbtn", required = "required" })
+
+                    </div>
+                    <div class="col-md-4">
+
+                        <h4>Author-Name:</h4>
+
+                        <input type="text" id="authorVal" disabled="disabled" style="background-color:greenyellow;border-width:0px" />
+                        @*@Html.DropDownList("bookIDauthor", null, "--select book--", htmlAttributes: new { @class = "dropbtn", required = "required" })*@
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Page-No:</h4>
+                        @*@Html.EditorFor(model => model.bookPageNum, new { @type = "number" })*@
+                        @Html.TextBoxFor(model => model.bookPageNum, htmlAttributes: new { @type = "number", required = "required" })
+                        @Html.ValidationMessageFor(model => model.bookPageNum, "", new { @class = "text-danger" })
+                        @*new { @type = "number" },*@
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="container">
+
+                        <div class="col-md-12">
+                            <h3>Enter Question:</h3>
+                        </div>
+
+
+                        @Html.Label("Upload Image:")
+                        <div>
+                            <input type="file" title="browse" id="questionPic" name="file" />
+                        </div>
+
+
+
+                        @*<input type="text" name="id" id="id" value=@ViewBag.qid />.*@
+                        @Html.TextAreaFor(model => model.questionText, new { @class = "ckeditor", required = "required" })
+                        @*@Html.TextAreaFor(model => model.questionText, htmlAttributes: new { @type = "ckeditor", required = "required" })*@
+                        @Html.ValidationMessageFor(model => model.questionText, "", new { @class = "text-danger" })
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-12">
+                            <div id="headingA">
+                                <h3>
+                                    Option A:
+                                </h3>
+                            </div>
+                            @*<h3><input type="text" id="myoptions" value="@ViewBag.optid" /></h3>*@
+                            @*style="background-color:greenyellow;border-width:0px"*@
+                            <h3><input type="text" id="myoptions" disabled="disabled" /></h3>
+
+
+
+                            @Html.Label("Upload Image:")
+                            <div>
+                                @*<input type="file" title="browse" id="anspic" name="file1" />*@
+                                <input type="file" title="browse" id="answerPic" name="file1" />
+                            </div>
+
+                            @Html.TextAreaFor(model => model.answerText, new { @class = "ckeditor" })
+                            @*@Html.ValidationMessageFor(model => model.answerText, "", new { @class = "text-danger" })*@
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin:30px">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" id="btnsave" value="Save" class="btn btn-success" onclick="checking()" />
+                </div>
+
+
+            </div>
+
+            @*@Html.HiddenFor(model => model.iteratequestions)*@
+           
+            <div class="row">
+                <div class="col-sm-12" id="QuestionDiv">
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+
+<script src="~/Content/js/bootstrap.js"></script>
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    function checking()
+    {
+        debugger;
+            var messageLength = CKEDITOR.instances['questionText'].getData().replace(/<[^>]*>/gi, '').length;
+            var messageLength2 = CKEDITOR.instances['answerText'].getData().replace(/<[^>]*>/gi, '').length;
+            if (!messageLength) {
+                alert('Please enter a Question');
+                //e.preventDefault();
+                response = null;
+            }
+            else if (!messageLength2)
+            {
+                alert('Please enter a answer');
+               
+            }
+            else if (messageLength && messageLength2) {
+                $('#headingA').hide();
+                if ($('#myoptions').val() == "") {
+                    $('#myoptions').val("Option B:");
+                   
+                   
+                }
+                else if ($('#myoptions').val() == "Option B:") {
+
+                    $('#myoptions').val("Option C:");
+                   
+                }
+                else if ($('#myoptions').val() == "Option C:") {
+
+                    $('#myoptions').val("Option D:");
+
+                }
+                else if ($('#myoptions').val() == "Option D:") {
+
+                    $('#mydata').hide();
+                    $('#myoptions').val('');
+                    //$('#myoptions').hide();
+                    $('#btnsave').hide();
+                    //for incrementing counter
+                    var l = document.getElementById("someLabel");
+                    var v = l.innerText;
+                    var value = v == "" ? 0 : parseInt(v);
+                    value++;
+                    l.innerText = value;
+
+                }
+
+        }
+
+    }
+    function OnSuccess(response)
+    {
+        debugger;
+            var messageLength = CKEDITOR.instances['answerText'].getData().replace(/<[^>]*>/gi, '').length;
+            if (!messageLength) {
+               // alert('no text in answer box');
+                // e.preventDefault();
+                // response = null;
+
+            }
+            else {
+                //alert("text present in answerbox");
+                CKEDITOR.instances['answerText'].setData('');
+                if ($('#QuestionDiv').hide()) {
+                    $('#QuestionDiv').show();
+                }
+                //$('#anspic').val('');
+                $('#answerPic').val('');
+                $('#QuestionDiv').html(response);
+
+            }
+    }
+    function OnFailure(response)
+    {
+        alert("Error occured here.");
+    }
+
+    function Next() {
+        debugger;
+        if ($('#degreeId option:selected').val() == "") {
+            alert("Please Select Degree");
+        }
+        else if ($('#subjectId option:selected').val() == "") {
+            alert("Please Select Subject");
+        }
+        else if ($('#categoryId option:selected').val() == "") {
+            alert("Please Select Category");
+        }
+        else {
+            $('#pnl1').hide();
+            //$('#btnpnl1').hide();
+            $('#pnlQuestion').show();
+        }
+
+    }
+
+    $('#degreeId').on('change', function () {
+        debugger;
+        var division = $('#degreeId option:selected').val();
+       // alert(gender);
+        var myvar1 = $('#degreeId option:selected').text();
+        $('#myVar').val($('#degreeId option:selected').text());
+             $.ajax({
+                type: 'Get',
+                 data: { division: division },
+                url: '@Url.Action("GetDegree", "Questions")',
+                success: function (result) {
+                debugger;
+                //$('#tblPostInformation_ctspCode').val(result);
+                var itemName = "";
+                var s = '<option value="">-- Select --</option>';
+                $.each(result, function (i, val) {
+                    itemName = val.subjectName;
+                    s += "<option value='" + val.subjectID + "'>" + itemName + "</option>";
+                });
+                    $('#subjectId').html(s);
+                }
+                });
+    });
+
+
+     $('#subjectId').on('change', function () {
+        debugger;
+         var division = $('#subjectId option:selected').val();
+         $('#myVar1').val($('#subjectId option:selected').text());
+       // alert(gender);
+             $.ajax({
+                type: 'Get',
+                 data: { division: division },
+                url: '@Url.Action("GetSubject", "Questions")',
+                success: function (result) {
+                    debugger;
+                //$('#tblPostInformation_ctspCode').val(result);
+                var itemName = "";
+                var s = '<option value="">-- Select --</option>';
+                $.each(result, function (i, val) {
+                    itemName = val.categoryName;
+                    s += "<option value='" + val.categoryID + "'>" + itemName + "</option>";
+                });
+                    $('#categoryId').html(s);
+                }
+                });
+                });
+
+
+    $("#categoryId").on('change', function () {
+
+        $('#myVar2').val($('#categoryId option:selected').text());
+    });
+
+      //forbooks name
+        $('#subjectId').on('change', function () {
+        debugger;
+         var division = $('#subjectId option:selected').val();
+         //$('#myVar1').val($('#subjectId option:selected').text());
+       // alert(gender);
+             $.ajax({
+                type: 'Get',
+                 data: { division: division },
+                url: '@Url.Action("GetBooksname", "Questions")',
+                success: function (result) {
+                    debugger;
+                //$('#tblPostInformation_ctspCode').val(result);
+                var itemName = "";
+                var s = '<option value="">-- Select --</option>';
+                $.each(result, function (i, val) {
+                    itemName = val.bookName;
+                    s += "<option value='" + val.bookID + "'>" + itemName + "</option>";
+                });
+                    $('#bookId').html(s);
+                }
+                });
+                });
+
+
+    //for bookauthors
+    $('#bookId').on('change', function () {
+        debugger;
+        var division = $('#bookId option:selected').val();
+         //$('#myVar1').val($('#subjectId option:selected').text());
+       // alert(gender);
+             $.ajax({
+                type: 'Get',
+                 data: { division: division },
+                url: '@Url.Action("GetBooksauthor", "Questions")',
+                 success: function (result) {
+                //$('#myVar1').val($('#subjectId option:selected').text());
+                    debugger;
+                //$('#tblPostInformation_ctspCode').val(result);
+                var itemName = "";
+                var s = '<option value="">-- Select --</option>';
+                     $.each(result, function (i, val) {
+
+                         itemName = val.bookAuthor;
+                         $('#authorVal').val(itemName).text();
+
+                });
+                    //$('#bookId').html(s);
+                }
+                });
+                });
+
+
+</script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+
+

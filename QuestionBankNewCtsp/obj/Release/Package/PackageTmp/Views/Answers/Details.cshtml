@@ -1,0 +1,106 @@
+﻿@model DAL.tblAnwer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblAnwer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.questionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.questionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.answerText1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.answerText1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.answerText2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.answerText2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.answerText3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.answerText3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.answerText4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.answerText4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.answerRight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.answerRight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.answerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

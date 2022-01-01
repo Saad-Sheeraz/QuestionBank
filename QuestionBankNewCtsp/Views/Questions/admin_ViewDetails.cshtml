@@ -1,0 +1,368 @@
+﻿
+@{
+    ViewBag.Title = "admin_ViewDetails";
+}
+<style>
+    .panel-body{
+        align-content:center;
+        /*margin-left:20px;*/
+    }
+</style>
+
+@foreach (var item in ViewBag.detail)
+{
+    <div role="tabpanel" class="tab-pane" id="profile">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Details</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row user_profile">
+                   
+                    <div class="col-md-12" style="margin-left:20%">
+                        <div class="col-md-4">
+                            <div class="panel-group">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading" style="font-size:large" font:bold;font-size:x-large">Class/Degree:</div>
+                                    <div class="panel-body" style="background-color:aqua; font:bold;font-size:large">
+                                        @ViewBag.deg
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel-group">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading" style="font-size:large" font:bold;font-size:x-large">Subject:</div>
+                                    <div class="panel-body" style="background-color:aqua; font:bold;font-size:large">
+                                        @ViewBag.sub
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel-group">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading" style="font-size:large" font:bold;font-size:x-large">Topic:</div>
+                                    <div class="panel-body" style="background-color:aqua" font:bold;font-size:large">
+                                       @ViewBag.topic
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                            @foreach (var bookitem in ViewBag.bookdetail)
+                            {
+                                <!-- Text input-->
+                                <div class="col-sm-3">
+                                    @Html.Label("Book Name:")
+                                </div>
+                                <div class="col-sm-9" style="margin-bottom: 10px;">
+                                    @{
+                                        if (bookitem.bookName != null)
+                                        {
+                                            @Html.Raw(bookitem.bookName)
+                                        }
+                                        else
+                                        {
+                                            <p>no value yet</p>
+                                        }
+                                    }
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    @Html.Label("Book Author:")
+                                </div>
+                                <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                                    @{
+                                        if (bookitem.bookAuthor != null)
+                                        {
+                                            @Html.Raw(bookitem.bookAuthor)
+                                        }
+                                        else
+                                        {
+                                            <p>no value yet</p>
+                                        }
+                                    }
+
+                                </div>
+                            }
+
+                            @foreach (var citems in ViewBag.complexid)
+                            {
+                                <div class="col-sm-3">
+                                    @Html.Label("Complexity Level:")
+                                </div>
+                                <div class="col-sm-9" style="margin-bottom: 10px;">
+                                    @{
+                                        if (citems.complexityLevel != null)
+                                        {
+                                            @Html.Raw(citems.complexityLevel)
+                                        }
+                                        else
+                                        {
+                                            <p>no value yet</p>
+                                        }
+                                    }
+
+                                </div>
+                            }
+
+                            <!-- Text input-->
+                            <div class="col-sm-3">
+                                @Html.Label("Page No:")
+                            </div>
+                            <div class="col-sm-9" style="margin-bottom: 10px;">
+                                @{
+                                    if (item.bookPageNum != null)
+                                    {
+                                        @Html.Raw(item.bookPageNum)
+                                    }
+                                    else
+                                    {
+                                        <p>no value yet</p>
+                                    }
+                                }
+
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                @Html.Label("Created By:")
+                            </div>
+                            <div class="col-sm-9" style="margin-bottom: 10px;">
+                                @{
+                                    if (item.createdBy != null)
+                                    {
+                                        @Html.Raw(item.createdBy)
+                                    }
+                                    else
+                                    {
+                                        <p>no value yet</p>
+                                    }
+                                }
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="col-sm-3">
+                                @Html.Label("Created On:")
+                            </div>
+                            <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                                @{
+                                    if (item.createdOn != null)
+                                    {
+                                        @Html.Raw(item.createdOn)
+                                    }
+                                    else
+                                    {
+                                        <p>no value yet</p>
+                                    }
+                                }
+                            </div>
+
+
+
+                            <!-- Text input-->
+                            <div class="col-sm-3">
+                                @Html.Label("Verified by:")
+                            </div>
+                            <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                                @{
+                                    if (item.verifiedBy != null)
+                                    {
+                                        @Html.Raw(item.verifiedBy)
+                                    }
+                                    else
+                                    {
+                                        <p>no value yet</p>
+                                    }
+                                }
+                            </div>
+
+                      
+                    
+                    <!-- Text input-->
+                    <div class="col-sm-3">
+                        @Html.Label("Verified On:")
+                    </div>
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                        @{
+                            if (item.verifiedDate != null)
+                            {
+                                @Html.Raw(item.verifiedDate)
+                            }
+                            else
+                            {
+                                <p>no value yet</p>
+                            }
+                        }
+                    </div>
+
+
+                    <!-- Text input-->
+                    <div class="col-sm-3">
+                        @Html.Label("Approved By:")
+                    </div>
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                        @{
+                            if (item.approvedBy != null)
+                            {
+                                @Html.Raw(item.approvedBy)
+                            }
+                            else
+                            {
+                                <p>no value yet</p>
+                            }
+                        }
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="col-sm-3">
+                        @Html.Label("Approved On:")
+                    </div>
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                        @{
+                            if (item.approvedDate != null)
+                            {
+                                @Html.Raw(item.approvedDate)
+                            }
+                            else
+                            {
+                                <p>no value yet</p>
+                            }
+                        }
+                    </div>
+
+
+
+                    <!-- Prepended text-->
+                    <div class="col-sm-3">
+                        @Html.Label("Creator-Reason:")
+                    </div>
+
+                    <div class="col-sm-9 " style="margin-bottom: 10px;">
+
+
+
+                        @{
+                            if (item.reasonText_C != null)
+                            {
+                                @Html.Raw(item.reasonText_C)
+                            }
+                            else
+                            {
+                                <p>no value yet</p>
+                            }
+                        }
+
+                    </div>
+                    <!-- Text input-->
+
+
+
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                @{
+                    if (ViewBag.type == "Admin")
+                    {
+                        if (ViewBag.check == "allquestions")
+                        {
+               
+
+                    @*@Html.ActionLink("Back", "admin_DashQuestions")*@
+                    <input type="button" class="btn btn-warning" value="Back" onclick="location.href='@Url.Action("admin_DashQuestions", "Questions")'" />
+              
+                        }
+                    }
+
+                    else if (ViewBag.type == "Creator")
+                    {
+                        if (ViewBag.check == "created")
+                        {
+                            <div class="btn btn-sm btn-warning">
+
+                                @Html.ActionLink("Back", "creator_ViewPendingQuestion")
+                            </div>
+                        }
+                        else if (ViewBag.check == "verified")
+                        {
+                            <div class="btn btn-sm btn-warning">
+
+                                @Html.ActionLink("Back", "creator_ViewVerifiedQuestion")
+                            </div>
+
+                        }
+                        else if (ViewBag.check == "approved")
+                        {
+                            <div class="btn btn-sm btn-warning">
+
+                                @Html.ActionLink("Back", "creator_ViewApprovedQuestion")
+                            </div>
+                        }
+                        else if (ViewBag.check == "discard")
+                        {
+                            <div class="btn btn-sm btn-warning">
+
+                                @Html.ActionLink("Back", "creator_ViewDiscardedQuestion")
+                            </div>
+                        }
+
+                    }
+                    else if (ViewBag.type == "Verifier")
+                    {
+
+                        if (ViewBag.check == "verified")
+                        {
+                            <div class="btn btn-sm btn-warning">
+
+                                @Html.ActionLink("Back", "verifier_ViewVerifiedQuestion")
+                            </div>
+                        }
+                        else if (ViewBag.check == "approved")
+                        {
+                            <div class="btn btn-sm btn-warning">
+
+                                @Html.ActionLink("Back", "verifier_ViewApprovedQuestion")
+                            </div>
+                        }
+                        else if (ViewBag.check == "deleted")
+                        {
+                            <div class="btn btn-sm btn-warning">
+
+                                @Html.ActionLink("Back", "verifier_ViewDiscardedQuestion")
+                            </div>
+                        }
+                        else if (ViewBag.check == "all")
+                        {
+                            <div class="btn btn-sm btn-warning">
+
+                                @Html.ActionLink("Back", "verifier_ViewAllQuestions")
+                            </div>
+                        }
+                    }
+                    else if (ViewBag.type == "Approver")
+                    {
+                        if (ViewBag.check == "approved")
+                        {
+                            <div class="btn btn-sm btn-warning">
+
+                                @Html.ActionLink("Back", "approver_viewApprovedQuestion")
+                            </div>
+                        }
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+}

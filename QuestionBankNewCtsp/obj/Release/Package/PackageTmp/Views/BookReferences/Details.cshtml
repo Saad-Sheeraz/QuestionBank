@@ -1,0 +1,98 @@
+﻿@model DAL.tblBookReference
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblBookReference</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tblQuestion.questionText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblQuestion.questionText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pageNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pageNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.questionNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.questionNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.paragraphNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.paragraphNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bookRefID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

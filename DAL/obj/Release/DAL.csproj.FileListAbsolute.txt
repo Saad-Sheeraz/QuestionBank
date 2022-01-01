@@ -1,0 +1,12 @@
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Release\DAL.dll.config
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Release\DAL.dll
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Release\DAL.pdb
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Release\EntityFramework.dll
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Release\EntityFramework.xml
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\obj\Release\DAL.csprojAssemblyReference.cache
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\obj\Release\DAL.csproj.CopyComplete
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\obj\Release\DAL.dll
+C:\Users\Saad Sheeraz\source\repos\QuestionBankNewCtsp\DAL\obj\Release\DAL.pdb

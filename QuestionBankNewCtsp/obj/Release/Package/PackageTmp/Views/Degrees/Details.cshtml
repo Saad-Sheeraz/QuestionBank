@@ -1,0 +1,145 @@
+﻿@model DAL.tblDegree
+
+@{
+    ViewBag.Title = "Details";
+}
+@*<div>
+    <h4>tblDegree</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.degreeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.degreeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    
+</p>*@
+
+<div role="tabpanel" class="tab-pane" id="profile">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Details</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row user_profile">
+
+                <!-- Text input-->
+                <div class="col-sm-3">
+                    @Html.Label("Degree Name:")
+                </div>
+                <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                    @Html.DisplayFor(model => model.degreeName)
+
+
+                </div>
+                <!-- Text input-->
+                <div class="col-sm-3">
+                    @Html.Label("Created By:")
+                </div>
+                <div class="col-sm-9" style="margin-bottom: 10px;">
+                    @Html.DisplayFor(model => model.createdBy)
+                    <p>no val yet</p>
+                </div>
+
+                <!-- Text input-->
+                <div class="col-sm-3">
+                    @Html.Label("Created On:")
+                </div>
+                <div class="col-sm-9" style="margin-bottom: 10px;">
+
+                    @Html.DisplayFor(model => model.createdOn)
+                    <p>no val yet</p>
+
+                </div>
+
+                <!-- Prepended text-->
+                <div class="col-sm-3">
+                    @Html.Label("Updated By:")
+                </div>
+
+                <div class="col-sm-9 " style="margin-bottom: 10px;">
+
+                    @Html.DisplayFor(model => model.updatedBy)
+                    <p>no val yet</p>
+
+                </div>
+                <!-- Text input-->
+
+                <div class="col-sm-3">
+                    @Html.Label("Updated On:")
+                </div>
+
+                <div class="col-sm-9 " style="margin-bottom: 10px;">
+
+                    @Html.DisplayFor(model => model.updatedOn)
+                    <p>no val yet</p>
+
+                </div>
+                <!-- Text input-->
+
+                <div class="col-sm-3 control-label">
+                    @Html.Label("Status:")
+                </div>
+                <div class="col-sm-9 " style="margin-bottom: 10px;">
+                    @Html.DisplayFor(model => model.status)
+
+
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.degreeID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+
+
+

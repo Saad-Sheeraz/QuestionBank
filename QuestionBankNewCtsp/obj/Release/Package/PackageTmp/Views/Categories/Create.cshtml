@@ -1,0 +1,120 @@
+﻿@model DAL.tblCategory
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div role="tabpanel" class="tab-pane" id="profile">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Insert Contents</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row user_profile">
+
+                    <div class="col-sm-3">
+                        <label for="fname">Select Degree:</label>
+                    </div>
+
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+                        <span>
+                            @Html.DropDownList("classId", null, "-- select degree name --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.classId, "", new { @class = "text-danger" })
+                        </span>
+                    </div>
+
+
+                    <div class="col-sm-3">
+                        <label for="fname">Select Subject:</label>
+                    </div>
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+                        <span>
+                            @Html.DropDownList("subjectId", null, "-- select subject name --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.subjectId, "", new { @class = "text-danger" })
+                        </span>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label for="fname">Enter Content:</label>
+                    </div>
+
+                    <div class="col-sm-9" style="margin-bottom: 10px;">
+                        <span>
+                            @Html.EditorFor(model => model.categoryName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.categoryName, "", new { @class = "text-danger" })
+                        </span>
+                    </div>
+
+                    <div class="col-md-9" style="margin-bottom: 10px;">
+                        
+                            <input type="submit" value="Create" class="btn btn-success" onclick="Validate()" />
+                      
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="btn btn-sm btn-warning">
+                    @Html.ActionLink("Show", "Index")
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+<script>
+    $('#classId').on('change', function () {
+        debugger;
+        var division = $('#classId option:selected').val();
+       // alert(gender);
+        var myvar1 = $('#classId option:selected').text();
+        $('#myVar').val($('#classId option:selected').text());
+             $.ajax({
+                type: 'Get',
+                 data: { division: division },
+                url: '@Url.Action("GetDegree", "Categories")',
+                success: function (result) {
+                debugger;
+                //$('#tblPostInformation_ctspCode').val(result);
+                var itemName = "";
+                var s = '<option value="">-- Select --</option>';
+                $.each(result, function (i, val) {
+                    itemName = val.subjectName;
+                    s += "<option value='" + val.subjectID + "'>" + itemName + "</option>";
+                });
+                    $('#subjectId').html(s);
+                }
+                });
+    });
+
+    function Validate() {
+        debugger;
+        if ($('#classId option:selected').val() == "") {
+            alert("Please Select Degree");
+        }
+        else if ($('#subjectId option:selected').val() == "") {
+            alert("Please Select Subject");
+        }
+        else if ($('#categoryId option:selected').val() == "") {
+            alert("Please Select Category");
+        }
+        else {
+            $('#pnl1').hide();
+            //$('#btnpnl1').hide();
+            $('#pnlQuestion').show();
+        }
+
+    }
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

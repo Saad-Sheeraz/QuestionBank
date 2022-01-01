@@ -1,0 +1,195 @@
+﻿@*@model ienumerable<dal.viewforverfier>*@
+
+
+@{
+                /**/
+
+                ViewBag.Title = "v_table";
+}
+<style>
+    body {
+        counter-reset: Serial; /* Set the Serial counter to 0 */
+    }
+
+    table {
+        border-collapse: separate;
+    }
+
+    .auto-index td:first-child:before {
+        counter-increment: Serial; /* Increment the Serial counter */
+        content: "" counter(Serial); /* Display the counter */
+    }
+</style>
+@*@using (Html.BeginForm())*@
+@using (Ajax.BeginForm("v_table", "Questions",
+    new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "progress"
+    }))
+{
+    <div class="row grid-first" id="collapse-grid1">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="g_panel">
+                <div style="margin-top:7px">
+                    @*<a href='@Url.Action("Create", "Degrees")' class="btn btn-primary">Add New</a>*@
+                </div>
+            </div>
+
+            <div class="g_panel">
+
+                <div class="g_title">
+                    <div class="h-transaction pull-left" style="align-items:center">
+                        <div class="container">
+                            <div style="align-items:center">
+                                <h2 style="align-items:center"> Verify Question & Answers </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse-btn pull-right">
+                        <a class="collapse-link" data-toggle="collapse" href="#collapse-1" data-parent="#collapse-grid1"><i class="fa fa-chevron-down"></i></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="g_content collapse in" id="collapse-1">
+                    <div class="table-responsive">
+                        <div class="auto-index">
+                            <table class="table table-striped jambo_table">
+                                <tr class="headings" style="background-color:#e2e0d4 !important">
+                                    <th>Sr#</th>
+                                    <th class="">
+                                        @Html.Label("Question:")
+                                    </th>
+                                    <th class="">
+                                        @Html.Label("Right-Answer:")
+                                    </th>
+                                    <th>
+                                        @Html.Label("Update:")
+                                    </th>
+                                    <th>
+                                        @Html.Label("Action:")
+                                    </th>
+                                    <th>
+                                        @Html.Label("Details")
+                                    </th>
+
+                                </tr>
+
+                                @foreach (var item in ViewBag.mydata)
+                                {
+                                    if (item.answerID == item.rightID && item.statusInfo != "deleted")
+                                    {
+                                        <tr style="background-color:papayawhip !important;">
+                                            <td></td>
+                                            <td>
+                                                @Html.Raw(item.questionText)
+                                            </td>
+                                            <td>
+                                                @Html.Raw(item.answerText1)
+                                            </td>
+                                            <td>
+                                                @{
+                                                    foreach (var c in ViewBag.questiontbl)
+                                                    {
+
+                                                        if (c.questionID == item.questionID && c.approvedDate == null && c.statusInfo!="deleted")
+                                                        {
+                                                            <div id="showwithbtn" style="font-size:large;" class="btn btn-info">
+                                                                @Html.ActionLink("Edit ", "v_GridRadio", new { id = item.questionID, p_catid = ViewBag.cid, p_subid = ViewBag.subid, p_degid = ViewBag.degid }, new { onclientclick = "return false;", autopostback = "false" })
+                                                            </div>
+
+                                                        }
+                                                        else if (c.questionID == item.questionID && c.approvedDate != null && c.statusInfo != "deleted")
+                                                        {
+                                                            <div id="showwithbtn" style="font-size:large;" class="btn btn-success">
+                                                                @Html.ActionLink("View ", "v_GridRadioEditNot", new { id = item.questionID, p_catid = ViewBag.cid, p_subid = ViewBag.subid, p_degid = ViewBag.degid }, new { onclientclick = "return false;", autopostback = "false" })
+                                                            </div>
+                                                        }
+                                                    }
+                                                }
+
+                                            </td>
+                                            <td>
+                                                @{
+                                                    foreach (var val in ViewBag.questiontbl)
+                                                    {
+                                                        if (val.questionID == item.questionID && val.verifiedDate != null && val.approvedDate == null)
+                                                        {
+                                                            <div id="verifydone">
+                                                                <label for="other" style="font-size:large; color:green">Verified</label>
+                                                            </div>
+
+                                                        }
+                                                        else if (val.questionID == item.questionID && val.verifiedDate == null && val.statusInfo!= "deleted")
+                                                        {
+                                                            <div id="verify" class="btn btn-sm btn-success" style="font-size:large; color:green">
+                                                                @Html.ActionLink("Verify", "v_verifyClick", new { id = item.questionID, id2 = item.answerID }, new { @class = "btncurrent" })
+
+                                                            </div>
+                                                            <div class="btn btn-sm btn-danger" style="font-size:large; color:green">
+                                                                @Html.ActionLink("Discard", "v_discardClick", new { id = item.questionID, id2 = item.answerID }, new { @class = "btncurrent" })
+
+                                                            </div>
+
+                                                        }
+                                                        else if (val.questionID == item.questionID && val.verifiedDate != null && val.approvedDate != null)
+                                                        {
+                                                            <div id="approvedone">
+                                                                <label for="other" style="font-size:large; color:darkorchid">Approved</label>
+                                                            </div>
+                                                        }
+                                                    }
+                                                }
+                                            </td>
+                                            <td>
+                                                <div class="btn btn-sm btn-warning">
+                                                    @Html.ActionLink("Details", "v_Details", new { idq = item.questionID, ida = item.rightID, c = ViewBag.cid, s = ViewBag.subid, d = ViewBag.degid })
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<script>
+     @*$('.btncurrent').on('click', function (e) {
+        debugger;
+        e.preventdefault();
+        // e.stoppropagation();
+         $.ajax({
+     url: '@Url.Action("showtable1", "Questions")',
+     type: 'POST',
+     data: $(this).serialize(),
+     datatype: "json",
+     success: function() {
+     alert("success");
+     },
+     error: function() {
+     alert("error123");
+     }
+     });
+    });*@
+    function OnSuccess(response) {
+        alert("Verified.");
+    }
+    function OnFailure(response) {
+        alert("Error occured.");
+    }
+</script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
+
+
